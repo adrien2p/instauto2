@@ -1,6 +1,6 @@
 {
-  "name": "instauto",
-  "version": "71.0.0",
+  "name": "instauto2",
+  "version": "1.0.0",
   "description": "Instagram automation library written in Node.js",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -10,7 +10,7 @@
     "build": "rimraf lib && tsc"
   },
   "author": "Adrien de Peretti <adrien.deperetti@gmail.com>",
-  "repository": "adrien2p/instauto",
+  "repository": "https://github.com/adrien2p/instauto2",
   "license": "MIT",
   "engines": {
     "node": ">=8"
