@@ -1,5 +1,4 @@
 import { ElementHandle, Page } from "puppeteer";
-import { Follower, UnFollower } from "./interfaces";
 
 export class Utils {
     static puppeteerPageOverride(page: Page): Page {
