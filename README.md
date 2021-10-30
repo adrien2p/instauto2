@@ -83,25 +83,12 @@ export class MyAdapter extends AbstractDbAdapter {
 To see how to use you own adapter you can have a look to the [example-loki.js](https://github.com/mifi/instauto/blob/master/example-loki.js)
 
 ## Tips
+
 - Run this on a machine with a non-cloud IP to avoid being banned
 
 ## Troubleshooting
 
 - If it doesn't work, make sure your instagram language is set to english
-
-## Running on Raspberry Pi
-
-Because puppeteer chrome binaries are not provided for RPi, you need to first install chromium using apt.
-
-Then replace your puppeteer launch code:
-
-```js
-browser = await puppeteer.launch({
-    executablePath: '/usr/bin/chromium-browser',
-    headless: true,
-    args: ['--disable-features=VizDisplayCompositor'],
-});
-```
 
 See also:
 - https://github.com/GoogleChrome/puppeteer/issues/550
@@ -109,31 +96,4 @@ See also:
 
 Also you might want to install the more lightweight package `puppeteer-core` instead of `puppeteer`.
 
-## Running with pm2
-First install [pm2](https://github.com/Unitech/pm2). (`npm i -g pm2`) Then copy [instabot.yml](https://github.com/mifi/instauto/blob/master/instabot.yml) into the same dir as `example.js` and run:
-
-```bash
-pm2 start instabot.yml
-pm2 save
-pm2 startup
-```
-
-Now it will run automatically on reboot! 🙌
-
-## Donate 🙈
-
-This project is maintained by me and [Adrien de peretti](https://github.com/adrien2p). The project will always remain free and open source, but if it's useful for you, consider supporting me. :) It will give me extra motivation to improve it.
-
-[Paypal](https://paypal.me/mifino/usd) | [crypto](https://mifi.no/thanks)
-
-## Credits
-
-- Icons made by [smalllikeart](https://www.flaticon.com/authors/smalllikeart) & [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/)
-
----
-
-Made with ❤️ in 🇳🇴 and 🇫🇷
-
-[More apps by mifi.no](https://mifi.no/)
-
-Follow me on [GitHub](https://github.com/mifi/), [YouTube](https://www.youtube.com/channel/UC6XlvVH63g0H54HSJubURQA), [IG](https://www.instagram.com/mifi.no/), [Twitter](https://twitter.com/mifi_no) for more awesome content!
+Made with ❤️ in 🇫🇷
