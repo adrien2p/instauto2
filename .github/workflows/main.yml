@@ -25,4 +25,4 @@ jobs:
         run: npm run build --if-present
       - uses: JS-DevTools/npm-publish@v1
         with:
-          token: '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'
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
