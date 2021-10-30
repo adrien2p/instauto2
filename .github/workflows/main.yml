@@ -1,0 +1,14 @@
+on: 
+  release:
+    types:
+      - created
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+            node-version: 10
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: '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'
