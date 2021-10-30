@@ -2,15 +2,25 @@ on:
   release:
     types:
       - created
+    branches:
+      - main
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v1
+      - name: Install Node.js
+        uses: actions/setup-node@v1
         with:
-            node-version: 10
-      - run: npm run lint
-      - run: npm run build
+          node-version: '14.x'
+      - name: Install npm dependencies
+        run: npm install
+      - name: npm init
+        run: npm init -y
+      - name: Run lint task
+        run: npm run lint --if-present
+      - name: Run build task
+        run: npm run build --if-present
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: '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'
