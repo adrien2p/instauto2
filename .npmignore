@@ -30,6 +30,7 @@ CHANGELOG.md
 README.md
 .eslintignore
 .eslintrc.json
+.eslintrc
 webpack.config.js
 babel.config.js
 instabot.yml
