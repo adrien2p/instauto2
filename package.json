@@ -1,6 +1,6 @@
 {
   "name": "instauto2",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Instagram automation library written in Node.js",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -28,9 +28,6 @@
   "dependencies": {
     "user-agents": "^1.0.559"
   },
-  "peerDependencies": {
-    "puppeteer": ">1.19.0"
-  },
   "devDependencies": {
     "@types/lokijs": "^1.5.7",
     "@types/node": "^16.11.6",
@@ -42,7 +39,7 @@
     "eslint-config-airbnb-typescript": "^14.0.1",
     "eslint-plugin-import": "^2.9.0",
     "lokijs": "^1.5.12",
-    "puppeteer": "^1.19.0",
+    "puppeteer": "^10.4.0",
     "rimraf": "^3.0.2",
     "typescript": "^4.4.4"
   }
