@@ -7,10 +7,8 @@ import {
 	AbstractDbAdapter,
 	BotOptions,
 	defaultBotOptions,
-	InstagramApi,
-	LanguageMessages,
+	InstagramApi, languageManager,
 	Logger,
-	Messages,
 	UnFollower,
 	Utils
 } from "./core";
@@ -30,7 +28,7 @@ export class InstautoCtr {
 	private hourMs = 60 * 60 * 1000;
 	private graphqlUserMissing = false;
 
-	private languageMessages = LanguageMessages.en;
+	private languageManager = languageManager;
 	private instagramApi: InstagramApi;
 	private logger: Logger;
 	private page: Page;
@@ -53,12 +51,10 @@ export class InstautoCtr {
 
 		if (this.options.enableCookies) await this.tryLoadCookies();
 
-
-		// Not sure if we can set cookies before having gone to a page
 		await this.page.goto(`${this.options.instagramBaseUrl}/`);
 		await Utils.sleep(1000);
 
-		this.logger.log(this.languageMessages.settingInstagramLanguage);
+		this.logger.log(this.languageManager.messages.settingInstagramLanguage);
 		await this.page.setCookie({ name: 'ig_lang', value: 'en', path: '/', });
 		await Utils.sleep(1000);
 
@@ -78,7 +74,7 @@ export class InstautoCtr {
 				await this.instagramApi.tryPressAuthSwitcher();
 				await Utils.sleep(1000);
 			} catch (err) {
-				this.logger.warn(this.languageMessages.logginPageButtonNotFound);
+				this.logger.warn(this.languageManager.messages.logginPageButtonNotFound);
 			}
 
 			// Mobile version https://github.com/mifi/SimpleInstaBot/issues/7
@@ -89,7 +85,7 @@ export class InstautoCtr {
 			if (!(await this.instagramApi.isLoggedIn())) {
 				await Utils.sleep(5000);
 
-				this.logger.log(this.languageMessages.stillNotLoggedIn);
+				this.logger.log(this.languageManager.messages.stillNotLoggedIn);
 				await this.page.reload();
 				await Utils.sleep(5000);
 
@@ -97,7 +93,7 @@ export class InstautoCtr {
 
 			let warnedAboutLoginFail = false;
 			while (!(await this.instagramApi.isLoggedIn())) {
-				if (!warnedAboutLoginFail) this.logger.warn(this.languageMessages.loginFailed);
+				if (!warnedAboutLoginFail) this.logger.warn(this.languageManager.messages.loginFailed);
 				warnedAboutLoginFail = true;
 				await Utils.sleep(5000);
 
@@ -113,20 +109,16 @@ export class InstautoCtr {
 		const numLikes = (await this.db.getLikedPhotosLastTimeUnit(this.dayMs)).length;
 		const numFollowedUnfollowedUsersLastHour = await this.getNumFollowedUsersThisTimeUnit(this.hourMs);
 		const numFollowedUnfollowedUsersLastDay = await this.getNumFollowedUsersThisTimeUnit(this.dayMs);
-		this.logger.log(this.languageMessages.haveFollowedInTheLastHour(numFollowedUnfollowedUsersLastHour));
-		this.logger.log(this.languageMessages.haveFollowedInTheLastDay(numFollowedUnfollowedUsersLastDay));
-		this.logger.log(this.languageMessages.haveLikedImagesInTheLastDay(numLikes));
+		this.logger.log(this.languageManager.messages.haveFollowedInTheLastHour(numFollowedUnfollowedUsersLastHour));
+		this.logger.log(this.languageManager.messages.haveFollowedInTheLastDay(numFollowedUnfollowedUsersLastDay));
+		this.logger.log(this.languageManager.messages.haveLikedImagesInTheLastDay(numLikes));
 
 		try {
 			const detectedUsername = await this.page.evaluate(() => (window as any)._sharedData.config.viewer.username);
 			if (detectedUsername) this.options.username = detectedUsername;
 		} catch (err) {
-			this.logger.error(this.languageMessages.usernameDetectionFailed, err);
+			this.logger.error(this.languageManager.messages.usernameDetectionFailed, err);
 		}
-	}
-
-	setLanguage(LanguageMessages: Messages): void {
-		this.languageMessages = LanguageMessages;
 	}
 
 	async tryLoadCookies(): Promise<void> {
@@ -137,27 +129,27 @@ export class InstautoCtr {
 				if (cookie.name !== 'ig_lang') await this.page.setCookie(cookie);
 			}
 		} catch (err) {
-			this.logger.error(this.languageMessages.noCookiesFound);
+			this.logger.error(this.languageManager.messages.noCookiesFound);
 		}
 	}
 
 	async trySaveCookies(): Promise<void> {
 		try {
-			this.logger.log(this.languageMessages.savingCookies);
+			this.logger.log(this.languageManager.messages.savingCookies);
 			const cookies = await this.page.cookies();
 
 			await writeFile(this.options.cookiesPath, JSON.stringify(cookies, null, 2));
 		} catch (err) {
-			this.logger.error(this.languageMessages.savingCookiesFailed);
+			this.logger.error(this.languageManager.messages.savingCookiesFailed);
 		}
 	}
 
 	async tryDeleteCookies(): Promise<void> {
 		try {
-			this.logger.log(this.languageMessages.deletingCookies);
+			this.logger.log(this.languageManager.messages.deletingCookies);
 			await unlink(this.options.cookiesPath);
 		} catch (err) {
-			this.logger.error(this.languageMessages.deletingCookiesFailed);
+			this.logger.error(this.languageManager.messages.deletingCookiesFailed);
 		}
 	}
 
@@ -200,7 +192,7 @@ export class InstautoCtr {
 
 		if (!elementHandle) {
 			if (await this.instagramApi.getUnfollowButton()) {
-				this.logger.log(this.languageMessages.alreadyFollowingUser);
+				this.logger.log(this.languageManager.messages.alreadyFollowingUser);
 				await Utils.sleep(5000);
 
 				return;
@@ -209,7 +201,7 @@ export class InstautoCtr {
 			throw new Error('Follow button not found');
 		}
 
-		this.logger.log(this.languageMessages.followingUser(username));
+		this.logger.log(this.languageManager.messages.followingUser(username));
 
 		if (!this.options.dryRun) {
 			await elementHandle.click();
@@ -226,10 +218,10 @@ export class InstautoCtr {
 			await this.db.addPrevFollowedUser(entry);
 
 			if (!elementHandle2) {
-				this.logger.log(this.languageMessages.buttonStateUnchanged);
+				this.logger.log(this.languageManager.messages.buttonStateUnchanged);
 				await Utils.sleep(60000);
 
-				throw new Error(this.languageMessages.buttonStateUnchanged);
+				throw new Error(this.languageManager.messages.buttonStateUnchanged);
 			}
 		}
 
@@ -238,7 +230,7 @@ export class InstautoCtr {
 	}
 
 	public async unfollowCurrentUser(username: string): Promise<UnFollower> {
-		this.logger.log(this.languageMessages.unfollowingUser(username));
+		this.logger.log(this.languageManager.messages.unfollowingUser(username));
 
 		const res = { username, time: new Date().getTime() } as UnFollower;
 
@@ -246,10 +238,10 @@ export class InstautoCtr {
 		if (!elementHandle) {
 			const elementHandle2 = await this.instagramApi.getFollowButton();
 			if (elementHandle2) {
-				this.logger.log(this.languageMessages.alreadyUnfollowUser);
+				this.logger.log(this.languageManager.messages.alreadyUnfollowUser);
 				res.noActionTaken = true;
 			} else {
-				this.logger.log(this.languageMessages.unfollowingUserFailed);
+				this.logger.log(this.languageManager.messages.unfollowingUserFailed);
 				res.noActionTaken = true;
 			}
 		}
@@ -332,7 +324,7 @@ export class InstautoCtr {
 			i += 1;
 
 			if (shouldProceed()) {
-				this.logger.log(this.languageMessages.hasMorePages(i));
+				this.logger.log(this.languageManager.messages.hasMorePages(i));
 				await Utils.sleep(200);
 			}
 		}
@@ -349,7 +341,7 @@ export class InstautoCtr {
         likeImagesMin: number;
         likeImagesMax: number;
     }) {
-		this.logger.log(this.languageMessages.followingUpTo(maxFollowsPerUser, username));
+		this.logger.log(this.languageManager.messages.followingUpTo(maxFollowsPerUser, username));
 
 		await this.throttle();
 
@@ -368,7 +360,7 @@ export class InstautoCtr {
 		for (const follower of followers) {
 			try {
 				if (numFollowedForThisUser >= maxFollowsPerUser) {
-					this.logger.log(this.languageMessages.followingReachedLimit);
+					this.logger.log(this.languageManager.messages.followingReachedLimit);
 					return;
 				}
 
@@ -381,7 +373,7 @@ export class InstautoCtr {
 				const ratio = followedByCount / (followsCount || 1);
 
 				if (isPrivate && skipPrivate) {
-					this.logger.log(this.languageMessages.privateUser);
+					this.logger.log(this.languageManager.messages.privateUser);
 				} else if (
 					(this.options.followUserMaxFollowers != null && followedByCount > this.options.followUserMaxFollowers) ||
                     (this.options.followUserMaxFollowing != null && followsCount > this.options.followUserMaxFollowing) ||
@@ -809,11 +801,8 @@ export class InstautoCtr {
 	}
 }
 
-export const Instauto = async (db: AbstractDbAdapter, browser: Browser, options: BotOptions, languageMessages?: Messages): Promise<InstautoCtr> => {
+export const Instauto = async (db: AbstractDbAdapter, browser: Browser, options: BotOptions): Promise<InstautoCtr> => {
 	const instance = new InstautoCtr(db, browser, options);
-	if (languageMessages) {
-		instance.setLanguage(languageMessages);
-	}
 	await instance.setup();
 	return instance;
 }
