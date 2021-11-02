@@ -1,5 +1,5 @@
 import { Browser, ElementHandle, Page } from "puppeteer";
-import { Utils } from "../utils";
+import { Utils } from "./utils";
 import { Logger } from "./interfaces";
 
 const ActionBlocked = Symbol('ActionBlocked');

@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
 import { AbstractDbAdapter } from './index';
-import { Utils } from "../../utils";
+import { Utils } from "../utils";
 import { Follower, LikedPhoto, LiteLogger, UnFollower } from "../interfaces";
 
 export type FileDbOptions = {

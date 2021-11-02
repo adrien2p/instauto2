@@ -3,7 +3,6 @@ import UserAgent = require('user-agents');
 import { join } from 'path';
 import { Browser, Page } from 'puppeteer';
 import { readFile, unlink, writeFile } from 'fs/promises';
-import { Utils } from "./utils";
 import {
     AbstractDbAdapter,
     BotOptions,
@@ -12,7 +11,8 @@ import {
     LanguageMessages,
     Logger,
     Messages,
-    UnFollower
+    UnFollower,
+    Utils
 } from "./core";
 
 function shuffleArray<T>(arrayIn: T[]): T[] {
