@@ -1,8 +1,8 @@
-export interface Logger {
+export interface LiteLogger {
   error: (message?: any, ...optionalParams: any[]) => void;
   warn: (message?: any, ...optionalParams: any[]) => void;
 }
 
-export interface MainLogger extends Logger {
+export interface Logger extends LiteLogger {
   log: (message?: any, ...optionalParams: any[]) => void;
 }

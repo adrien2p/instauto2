@@ -1,13 +1,13 @@
 'use strict';
 
 const puppeteer = require('puppeteer'); // eslint-disable-line import/no-extraneous-dependencies
-const { Instauto } = require('instauto2'); // eslint-disable-line import/no-unresolved
+const { Instauto, FileDbAdapter } = require('./lib/index.js'); // eslint-disable-line import/no-unresolved
 
 const options = {
   cookiesPath: './cookies.json',
 
-  username: 'your-ig-username',
-  password: 'your-ig-password',
+  username: 'manon.deplanche',
+  password: 'Manolo1*',
 
   // Global limit that prevents follow or unfollows (total) to exceed this number over a sliding window of one hour:
   maxFollowsPerHour: 20,
@@ -50,7 +50,7 @@ const options = {
     browser = await puppeteer.launch({ headless: false });
 
     // Create a database where state will be loaded/saved to
-    const instautoDb = await Instauto.JSONDB({
+    const instautoDb = new FileDbAdapter({
       // Will store a list of all users that have been followed before, to prevent future re-following.
       followedDbPath: './followed.json',
       // Will store all unfollowed users here

@@ -1,17 +1,17 @@
 import { readFile, writeFile } from 'fs/promises';
 import { AbstractDbAdapter } from './';
-import { Follower, LikedPhoto, Logger, UnFollower } from '../interfaces';
 import { Utils } from "../utils";
+import { Follower, LikedPhoto, LiteLogger, UnFollower } from "../core/interfaces";
 
 export type FileDbOptions = {
     followedDbPath: string,
     unfollowedDbPath: string,
     likedPhotosDbPath: string,
-    logger: Logger
+    logger: LiteLogger
 };
 
 export class FileDbAdapter extends AbstractDbAdapter {
-	protected readonly logger: Logger;
+	protected readonly logger: LiteLogger;
 
 	private prevFollowedUsers: Record<string, Follower> = {};
 
@@ -127,9 +127,6 @@ export class FileDbAdapter extends AbstractDbAdapter {
 		}
 	}
 
-	// Since the loading is done in the constructor to avoid breaking the existing API. Just allow to check the fulfillment
-	// Of the loading DB to be sure a certain action can be fired.
-	// TODO: Remove this when the API is ready for changes
 	private async awaitLoadingIfNecessary(): Promise<void> {
 		if (!this._loadingIsComplete) {
 			return await this._loadingPromise;

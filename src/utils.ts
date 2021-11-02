@@ -1,6 +1,13 @@
 import { ElementHandle, Page } from "puppeteer";
+import { Logger } from "./core/interfaces";
 
 export class Utils {
+	private static _logger: Logger = console;
+
+	static set logger(logger: Logger) {
+		this._logger = logger;
+	}
+
 	static puppeteerPageOverride(page: Page): Page {
 		const originalXPath = page.$x;
 		page.$x = async function (expression: string): Promise<ElementHandle[]> {
@@ -22,5 +29,16 @@ export class Utils {
 			return accumulator;
 		}, result);
 		return result;
+	}
+
+	static sleep(ms: number, dev = 1): Promise<string> {
+		const msWithDev = ((Math.random() * dev) + 1) * ms;
+		this._logger.log('Waiting', Math.round(msWithDev / 1000), 'sec');
+		return new Promise(resolve => setTimeout(resolve, msWithDev));
+	}
+
+	static async filter<T>(arr: T[], predicate: (element: T) => Promise<boolean>): Promise<T[]> {
+		const results = await Promise.all(arr.map(predicate));
+		return arr.filter((_v, index) => results[index]);
 	}
 }

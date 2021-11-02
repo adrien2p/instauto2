@@ -46,7 +46,7 @@ such as :
 
 ```typescript
 export class MyAdapter extends AbstractDbAdapter {
-  constructor(private readonly instance: YourInstanceType, private readonly logger: Logger) {
+  constructor(private readonly instance: YourInstanceType, private readonly logger: LiteLogger) {
     super();
   }
 

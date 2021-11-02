@@ -1,5 +1,5 @@
 import { AbstractDbAdapter } from "./abstract-db.adapter";
-import { Follower, LikedPhoto, MainLogger, UnFollower } from "../interfaces";
+import { Follower, LikedPhoto, LiteLogger, UnFollower } from "../core/interfaces";
 
 interface TLikeLokiCollection<T = any> {
 	insert: (data: T) => T;
@@ -22,7 +22,7 @@ export class LokiDbAdapter<T extends TLoki> extends AbstractDbAdapter {
 
 	constructor(
         private readonly instance: T,
-        protected readonly logger: MainLogger = console
+        protected readonly logger: LiteLogger = console
 	) {
 		super();
 		this.createCollectionsIfNecessary();

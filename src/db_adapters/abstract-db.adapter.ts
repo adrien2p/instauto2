@@ -1,8 +1,8 @@
 import { IDbAdapter } from './interfaces';
-import { Follower, UnFollower, LikedPhoto, Logger } from '../interfaces';
+import { Follower, UnFollower, LikedPhoto, LiteLogger } from '../core/interfaces';
 
 export abstract class AbstractDbAdapter implements IDbAdapter {
-  protected abstract readonly logger: Logger;
+  protected abstract readonly logger: LiteLogger;
 
   abstract addLikedPhoto({ username, href, time }: LikedPhoto): Promise<void>;
 
