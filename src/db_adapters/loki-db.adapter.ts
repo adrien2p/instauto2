@@ -1,16 +1,16 @@
 import { AbstractDbAdapter } from "./abstract-db.adapter";
 import { Follower, LikedPhoto, MainLogger, UnFollower } from "../interfaces";
 
-interface TLokiCollection<T = any> {
+interface TLikeLokiCollection<T = any> {
 	insert: (data: T) => T;
 	find: (query?: unknown) => (T & any)[];
 	findOne: (query?: unknown) => (T & any);
 }
 
 interface TLoki {
-	getCollection: (string) => TLokiCollection;
-	addCollection: any;
-	saveDatabase: any;
+	getCollection: (string) => TLikeLokiCollection;
+	addCollection: (name: string, options?: Record<string, any>) => TLikeLokiCollection;
+	saveDatabase: (callback?: (err?: any) => void) => void;
 }
 
 export class LokiDbAdapter<T extends TLoki> extends AbstractDbAdapter {
@@ -79,7 +79,7 @@ export class LokiDbAdapter<T extends TLoki> extends AbstractDbAdapter {
 		let shouldSaveDatabase = false;
 		for (const collectionName of Object.keys(this.collectionNames)) {
 			if (!this.instance.getCollection(collectionName)) {
-				this.instance.addCollection(collectionName);
+				this.instance.addCollection(collectionName, { disableMeta: true });
 				shouldSaveDatabase = true;
 			}
 		}
