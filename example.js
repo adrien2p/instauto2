@@ -60,7 +60,7 @@ const options = {
     });
 
     const instauto = await Instauto(instautoDb, browser, options, {
-      settingInstagramLanguage: 'Réglage de la langue sur l\'anglais'
+      settingInstagramLanguage: 'Réglage de la langue sur l\'anglais',
     });
 
     // This can be used to unfollow people:
