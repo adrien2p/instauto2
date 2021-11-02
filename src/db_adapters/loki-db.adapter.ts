@@ -1,8 +1,19 @@
-import loki from  'lokijs';
 import { AbstractDbAdapter } from "./abstract-db.adapter";
 import { Follower, LikedPhoto, MainLogger, UnFollower } from "../interfaces";
 
-export class LokiDbAdapter extends AbstractDbAdapter {
+interface TLokiCollection<T = any> {
+	insert: (data: T) => T;
+	find: (query?: unknown) => (T & any)[];
+	findOne: (query?: unknown) => (T & any);
+}
+
+interface TLoki {
+	getCollection: (string) => TLokiCollection;
+	addCollection: any;
+	saveDatabase: any;
+}
+
+export class LokiDbAdapter<T extends TLoki> extends AbstractDbAdapter {
 	private readonly collectionNames = {
 		followed: 'followed',
 		unfollowed: 'unfollowed',
@@ -10,7 +21,7 @@ export class LokiDbAdapter extends AbstractDbAdapter {
 	};
 
 	constructor(
-        private readonly instance: loki,
+        private readonly instance: T,
         protected readonly logger: MainLogger = console
 	) {
 		super();
