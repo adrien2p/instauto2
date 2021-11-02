@@ -78,7 +78,7 @@ export class InstautoCtr {
                 await this.instagramApi.tryPressAuthSwitcher();
                 await Utils.sleep(1000);
             } catch (err) {
-                this.logger.warn('Login page button not found, assuming we have login form');
+                this.logger.warn(this.languageMessages.logginPageButtonNotFound);
             }
 
             // Mobile version https://github.com/mifi/SimpleInstaBot/issues/7
@@ -89,7 +89,7 @@ export class InstautoCtr {
             if (!(await this.instagramApi.isLoggedIn())) {
                 await Utils.sleep(5000);
 
-                this.logger.log('Still not logged in, trying to reload loading page');
+                this.logger.log(this.languageMessages.stillNotLoggedIn);
                 await this.page.reload();
                 await Utils.sleep(5000);
 
@@ -97,7 +97,7 @@ export class InstautoCtr {
 
             let warnedAboutLoginFail = false;
             while (!(await this.instagramApi.isLoggedIn())) {
-                if (!warnedAboutLoginFail) this.logger.warn('WARNING: Login has not succeeded. This could be because of an incorrect username/password, or a "suspicious login attempt"-message. You need to manually complete the process.');
+                if (!warnedAboutLoginFail) this.logger.warn(this.languageMessages.loginFailed);
                 warnedAboutLoginFail = true;
                 await Utils.sleep(5000);
 
