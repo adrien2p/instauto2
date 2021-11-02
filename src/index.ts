@@ -1,3 +1,4 @@
 export { Instauto } from './bot';
 export { BotOptions } from "./core/interfaces";
-export * from "./db_adapters";
+export * from "./core/db_adapters";
+export { Messages } from './core';

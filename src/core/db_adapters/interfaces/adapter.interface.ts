@@ -1,4 +1,4 @@
-import { LikedPhoto, Follower, UnFollower } from '../../core/interfaces';
+import { LikedPhoto, Follower, UnFollower } from '../../interfaces';
 
 export interface IDbAdapter {
   getLikedPhotosLastTimeUnit: (timeUnit: number) => Promise<LikedPhoto[]>;

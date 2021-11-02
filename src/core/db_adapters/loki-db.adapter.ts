@@ -1,5 +1,5 @@
 import { AbstractDbAdapter } from "./abstract-db.adapter";
-import { Follower, LikedPhoto, LiteLogger, UnFollower } from "../core/interfaces";
+import { Follower, LikedPhoto, LiteLogger, UnFollower } from "../interfaces";
 
 interface TLikeLokiCollection<T = any> {
 	insert: (data: T) => T;

@@ -1,5 +1,5 @@
 import { IDbAdapter } from './interfaces';
-import { Follower, UnFollower, LikedPhoto, LiteLogger } from '../core/interfaces';
+import { Follower, UnFollower, LikedPhoto, LiteLogger } from '../interfaces';
 
 export abstract class AbstractDbAdapter implements IDbAdapter {
   protected abstract readonly logger: LiteLogger;
