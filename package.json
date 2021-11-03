@@ -1,6 +1,6 @@
 {
   "name": "instauto2",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "Instagram automation library written in Node.js",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -31,7 +31,6 @@
   "devDependencies": {
     "@types/lokijs": "^1.5.7",
     "@types/node": "^16.11.6",
-    "@types/puppeteer": "^5.4.4",
     "@types/puppeteer-core": "^5.4.0",
     "@types/user-agents": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
