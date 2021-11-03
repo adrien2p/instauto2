@@ -2,7 +2,7 @@
 [![Npm package daily downloads](https://badgen.net/npm/dd/instauto2)](https://npmjs.com/package/instauto2)
 [![Npm package monthly downloads](https://badgen.net/npm/dm/instauto2)](https://npmjs.com/package/instauto2)
 [![Npm package monthly downloads](https://badgen.net/npm/dy/instauto2)](https://npmjs.com/package/instauto2)
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/adrien2p/instauto2/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/adrien2p/instauto2/blob/main/LICENCE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 <p align="center">
@@ -32,8 +32,6 @@ Also, this library is a huge upgrade from [instauto](https://github.com/mifi/ins
 
 You can run this code for example once every day using cron or pm2 or similar
 
-See [index.js](https://github.com/mifi/instauto/blob/master/index.js) for available options.
-
 ## Supported functionality
 
 - Follow the followers of some particular users. (e.g. celebrities.) Parameters like max/min ratio for followers/following can be set.
@@ -44,7 +42,7 @@ See [index.js](https://github.com/mifi/instauto/blob/master/index.js) for availa
 
 - The code automatically prevents breaching 100 follow/unfollows per hour or 700 per 24hr, to prevent bans. This can be configured.
 
-See [example.js](https://github.com/mifi/instauto/blob/master/example.js) for example of features
+See [example.js](https://github.com/adrien2p/instauto2/blob/main/example.js) or [example-loki.js](https://github.com/adrien2p/instauto2/blob/main/example-loki.js) for example of features
 
 ## Data management
 
@@ -54,8 +52,8 @@ If you need to override the default behavior you can either choose to use the ot
 
 ### Creating your own adapter
 
-To create your own adapter you can have a look to [loki-db.adapter.ts](https://github.com/mifi/instauto/tree/master/src/db_adapters/loki-db.adapter.ts).
-Basically you need to create a class that extend the [AbstractDbAdapter](https://github.com/mifi/instauto/tree/master/src/db_adapters/abstract-db.adapter.ts) 
+To create your own adapter you can have a look to [loki-db.adapter.ts](https://github.com/adrien2p/instauto2/blob/main/src/core/db_adapters/loki-db.adapter.ts).
+Basically you need to create a class that extend the [AbstractDbAdapter](https://github.com/adrien2p/instauto2/blob/main/src/core/db_adapters/abstract-db.adapter.ts) 
 such as :
 
 ```typescript
@@ -94,7 +92,7 @@ export class MyAdapter extends AbstractDbAdapter {
 }
 ```
 
-To see how to use you own adapter you can have a look to the [example-loki.js](https://github.com/mifi/instauto/blob/master/example-loki.js)
+To see how to use you own adapter you can have a look to the [example-loki.js](https://github.com/adrien2p/instauto2/blob/main/example-loki.js)
 
 ## Language
 
