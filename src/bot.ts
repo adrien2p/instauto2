@@ -634,7 +634,7 @@ export class InstautoCtr {
 	}
 
 	private async navigateToUser(username: string): Promise<boolean> {
-		this.logger.log(this.languageManager.messages.navigatingToUser);
+		this.logger.log(this.languageManager.messages.navigatingToUser(username));
 		return this.safeGoto(`${this.options.instagramBaseUrl}/${encodeURIComponent(username)}`);
 	}
 

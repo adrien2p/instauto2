@@ -160,19 +160,19 @@ export const LanguageMessages: Language = {
 			return `Abonnement à l\'utilisateur ${value}`;
 		},
 		goToUrl: (url: string) => {
-			return `Naviguer vers ${url}`;
+			return `Navigation vers ${url}`;
 		},
 		hasMorePages: (value: string | number) => {
 			return `Il y a encore des pages (page actuelle: ${value})`;
 		},
 		haveFollowedInTheLastDay: (value: string | number) => {
-			return `il y a eu ${value} abonnements/désabonnements dans les dernière 24 heures`;
+			return `il y a eu ${value} (dés)abonnements dans les dernière 24 heures`;
 		},
 		haveFollowedInTheLastHour: (value: string | number) => {
-			return `il y a eu ${value} abonnements/désabonnements dans la dernière heure`;
+			return `il y a eu ${value} (dés)abonnements dans la dernière heure`;
 		},
 		haveLikedImagesInTheLastDay: (value: string | number) => {
-			return `HIl y a ey ${value} images aimés dans les dernières 24 heures`;
+			return `Il y a ey ${value} images aimés dans les dernières 24 heures`;
 		},
 		likeImageCount: (count: number | string) => {
 			return `Mention "J'aime" ${count} image(s)`;
