@@ -1,3 +1,10 @@
+[![Npm package version](https://badgen.net/npm/v/instauto2)](https://npmjs.com/package/instauto2)
+[![Npm package daily downloads](https://badgen.net/npm/dd/instauto2)](https://npmjs.com/package/instauto2)
+[![Npm package monthly downloads](https://badgen.net/npm/dm/instauto2)](https://npmjs.com/package/instauto2)
+[![Npm package monthly downloads](https://badgen.net/npm/dy/instauto2)](https://npmjs.com/package/instauto2)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/adrien2p/instauto2/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
 instauto is an Instagram automation/bot library written in modern, clean javascript using Google's Puppeteer. Goal is to be very easy to set up, use, and extend, and obey instagram's limits. Heavily inspired by [InstaPy](https://github.com/timgrossmann/InstaPy), but I thought it was way too heavy and hard to setup.
 
 ## Setup
