@@ -1,4 +1,4 @@
-import { ElementHandle, Page } from 'puppeteer';
+import { ElementHandle, Page } from 'puppeteer-core';
 import { Logger } from './interfaces';
 
 export class Utils {

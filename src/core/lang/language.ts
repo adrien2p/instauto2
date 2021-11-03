@@ -1,4 +1,8 @@
 export interface Messages {
+    dbNoFollowedDatabase: 'No followed database found' | string;
+    dbNoUnfollowedDatabase: 'No unfollowed database found' | string;
+    dbNoLikesDatabase: 'No likes database found' | string;
+    dbSaveFailed: 'Failed to save database' | string;
     settingInstagramLanguage: 'Setting language to english' | string;
     logginPageButtonNotFound: 'Login page button not found, assuming we have login form' | string;
     stillNotLoggedIn: 'Still not logged in, trying to reload loading page' | string;
@@ -62,6 +66,10 @@ export const LanguageMessages: Language = {
 		alreadyFollowingUser: 'We are already following this user',
 		alreadyUnfollowUser: 'User has been unfollowed already',
 		buttonStateUnchanged: 'Button did not change state',
+		dbNoFollowedDatabase: 'No followed database found',
+		dbNoLikesDatabase: 'No likes database found',
+		dbNoUnfollowedDatabase: 'No unfollowed database found',
+		dbSaveFailed: 'Failed to save database',
 		deletingCookies: 'Deleting cookies',
 		deletingCookiesFailed: 'Failed to delete the cookies',
 		followingFailed: (value: string) => {
@@ -147,6 +155,10 @@ export const LanguageMessages: Language = {
 		alreadyFollowingUser: 'Déja abonné à cet utilisateur',
 		alreadyUnfollowUser: "Déjà désabonné de l\'utilisateur",
 		buttonStateUnchanged: 'L\'état du button n\'a pas changé',
+		dbNoFollowedDatabase: 'Pas de base de donnée trouvé pour enregistrer les abonnements',
+		dbNoLikesDatabase: "Pas de base de donnée trouvé pour enregistrer les mention \"j'aime\"",
+		dbNoUnfollowedDatabase: 'Pas de base de donnée trouvé pour enregistrer les désabonnements',
+		dbSaveFailed: 'Enregistrement des données échoué',
 		deletingCookies: 'Suppression des cookies',
 		deletingCookiesFailed: 'Échec de la suppression des cookies',
 		followingFailed: (value: string) => {

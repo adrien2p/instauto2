@@ -1,4 +1,4 @@
-import { Browser, ElementHandle, Page } from 'puppeteer';
+import { Browser, ElementHandle, Page } from 'puppeteer-core';
 import { Utils } from './utils';
 import { Logger } from './interfaces';
 

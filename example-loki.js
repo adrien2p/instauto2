@@ -1,10 +1,11 @@
 'use strict';
 
-const puppeteer = require('puppeteer'); // eslint-disable-line import/no-extraneous-dependencies
+const puppeteer = require('puppeteer-core'); // eslint-disable-line import/no-extraneous-dependencies
 const loki = require('lokijs');
 const { Instauto, LokiDbAdapter } = require('instauto2'); // eslint-disable-line import/no-unresolved
 const fs = require('fs');
 const path = require('path');
+const chromePaths = require('chrome-paths');
 
 const options = {
 	cookiesPath: './cookies.json',
@@ -73,7 +74,8 @@ async function getDb() {
 	let browser;
 
 	try {
-		browser = await puppeteer.launch({ headless: false });
+		const chromePath = chromePaths.chrome;
+		browser = await puppeteer.launch({ headless: false, executablePath: chromePath });
 
 		const db = await getDb();
 		const instautoDb = new LokiDbAdapter(db);

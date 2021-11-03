@@ -1,7 +1,8 @@
 'use strict';
 
-const puppeteer = require('puppeteer'); // eslint-disable-line import/no-extraneous-dependencies
+const puppeteer = require('puppeteer-core'); // eslint-disable-line import/no-extraneous-dependencies
 const { Instauto, FileDbAdapter } = require('./lib/index.js'); // eslint-disable-line import/no-unresolved
+const chromePaths = require('chrome-paths');
 
 const options = {
   cookiesPath: './cookies.json',
@@ -47,7 +48,8 @@ const options = {
   let browser;
 
   try {
-    browser = await puppeteer.launch({ headless: false });
+    const chromePath = chromePaths.chrome;
+    browser = await puppeteer.launch({ headless: false, executablePath: chromePath });
 
     // Create a database where state will be loaded/saved to
     const instautoDb = new FileDbAdapter({

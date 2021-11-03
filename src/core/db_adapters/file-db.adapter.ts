@@ -2,6 +2,7 @@ import { readFile, writeFile } from 'fs/promises';
 import { AbstractDbAdapter } from './index';
 import { Utils } from '../utils';
 import { Follower, LikedPhoto, LiteLogger, UnFollower } from '../interfaces';
+import { languageManager } from '..';
 
 export type FileDbOptions = {
     followedDbPath: string,
@@ -103,17 +104,17 @@ export class FileDbAdapter extends AbstractDbAdapter {
 		try {
 			this.prevFollowedUsers = Utils.keyBy<Follower>(JSON.parse((await readFile(this.followedDbPath)).toString()), 'username');
 		} catch (err) {
-			this.logger.warn('No followed database found');
+			this.logger.warn(languageManager.messages.dbNoFollowedDatabase);
 		}
 		try {
 			this.prevUnfollowedUsers = Utils.keyBy<UnFollower>(JSON.parse((await readFile(this.unfollowedDbPath)).toString()), 'username');
 		} catch (err) {
-			this.logger.warn('No unfollowed database found');
+			this.logger.warn(languageManager.messages.dbNoUnfollowedDatabase);
 		}
 		try {
 			this.prevLikedPhotos = JSON.parse((await readFile(this.likedPhotosDbPath)).toString());
 		} catch (err) {
-			this.logger.warn('No likes database found');
+			this.logger.warn(languageManager.messages.dbNoLikesDatabase);
 		}
 	}
 
@@ -123,7 +124,7 @@ export class FileDbAdapter extends AbstractDbAdapter {
 			await writeFile(this.unfollowedDbPath, JSON.stringify(Object.values(this.prevUnfollowedUsers)));
 			await writeFile(this.likedPhotosDbPath, JSON.stringify(this.prevLikedPhotos));
 		} catch (err) {
-			this.logger.error('Failed to save database');
+			this.logger.error(languageManager.messages.dbSaveFailed);
 		}
 	}
 
