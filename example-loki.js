@@ -10,8 +10,8 @@ const chromePaths = require('chrome-paths');
 const options = {
 	cookiesPath: './cookies.json',
 
-	username: 'manon.deplanche',
-	password: 'Manolo1*',
+	username: 'your_ig_username',
+	password: 'your_ig_pass',
 
 	// Global limit that prevents follow or unfollows (total) to exceed this number over a sliding window of one hour:
 	maxFollowsPerHour: 20,
