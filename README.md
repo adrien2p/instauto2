@@ -5,7 +5,9 @@
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/adrien2p/instauto2/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-instauto is an Instagram automation/bot library written in modern, clean javascript using Google's Puppeteer-core. Goal is to be very easy to set up, use, and extend, and obey instagram's limits. Heavily inspired by [InstaPy](https://github.com/timgrossmann/InstaPy), but I thought it was way too heavy and hard to setup.
+instauto2 is an Instagram automation/bot library written in modern, clean javascript using Google's Puppeteer-core. Goal is to be very easy to set up, use, and extend, and obey instagram's limits. Heavily inspired by [InstaPy](https://github.com/timgrossmann/InstaPy).
+
+Also, this library is a huge upgrade from [instauto](https://github.com/mifi/instauto)
 
 ## Setup
 
