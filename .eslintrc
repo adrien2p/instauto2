@@ -9,7 +9,8 @@
   ],
   "plugins": [
     "import",
-    "@typescript-eslint/eslint-plugin"
+    "@typescript-eslint/eslint-plugin",
+    "sort-keys-fix"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -33,6 +34,7 @@
         "allowTemplateLiterals": true
       }
     ],
+    "sort-keys-fix/sort-keys-fix": "warn",
     "max-len": 0,
     "arrow-parens": 0,
     "no-console": 0,

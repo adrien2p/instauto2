@@ -16,8 +16,8 @@ interface TLoki {
 export class LokiDbAdapter<T extends TLoki> extends AbstractDbAdapter {
 	private readonly collectionNames = {
 		followed: 'followed',
-		unfollowed: 'unfollowed',
-		'liked-photos': 'liked-photos'
+		'liked-photos': 'liked-photos',
+		unfollowed: 'unfollowed'
 	};
 
 	constructor(
@@ -30,7 +30,7 @@ export class LokiDbAdapter<T extends TLoki> extends AbstractDbAdapter {
 
 	addLikedPhoto({ username, href, time }: LikedPhoto): Promise<void> {
 		const collection = this.instance.getCollection(this.collectionNames['liked-photos']);
-		return collection.insert({ username, href, time });
+		return collection.insert({ href, time, username });
 	}
 
 	addPrevFollowedUser(follower: Follower): Promise<void> {

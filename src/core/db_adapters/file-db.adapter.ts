@@ -29,9 +29,9 @@ export class FileDbAdapter extends AbstractDbAdapter {
 	private _loadingPromise: Promise<void | never>;
 
 	constructor({ followedDbPath, unfollowedDbPath, likedPhotosDbPath, logger }: FileDbOptions = {
-		logger: console,
 		followedDbPath: null,
 		likedPhotosDbPath: null,
+		logger: console,
 		unfollowedDbPath: null
 	}) {
 		super();
@@ -48,7 +48,7 @@ export class FileDbAdapter extends AbstractDbAdapter {
 	}
 
 	async addLikedPhoto({ username, href, time }: LikedPhoto): Promise<void> {
-		this.prevLikedPhotos.push({ username, href, time });
+		this.prevLikedPhotos.push({ href, time, username });
 		await this.awaitLoadingIfNecessary();
 		await this.trySaveDb();
 	}
