@@ -22,6 +22,12 @@ export interface Messages {
     followingUpTo: (value: string | number, username: string) => `Following up to ... followers of ...` | string;
     followingReachedLimit: 'Have reached followed limit for this user, stopping' | string;
     privateUser: `User is private, skipping` | string;
+    tooManyFollowerFollowing: (followedByCount: number, followsCount: number) => 'User has too many or too few followers or following, skipping. followedByCount: ... followsCount: ...' | string;
+    tooManyFollowerRation: 'User has too many followers compared to follows or opposite, skipping' | string;
+    likeImageFailed: (value: string) => `Failed to follow user images ...` | string;
+    followingFailed: (value: string) => `Failed to process follower ...` | string;
+    unfollowingCount: (count: number) => `Unfollowing ... users` | string;
+    unfollowBreak: 'Have unfollowed 10 users since last break. Taking a break' | string;
 }
 
 export interface Language {
@@ -67,7 +73,21 @@ export const LanguageMessages: Language = {
 			return `Aller jusqu\'à ${value} abonnement aux utilisateurs de l\'utilisateur ${username}`;
 		},
 		followingReachedLimit: "Limite d\'abonnement atteinte pour cet utilisateur, arrêt",
-		privateUser: "Le compte de l\'utilisateur est privé, passer"
+		privateUser: "Le compte de l\'utilisateur est privé, passer",
+		tooManyFollowerFollowing: (followedByCount: number, followsCount: number) => {
+			return `L'utilisateur a trop d'abonnés ou d'abonnement, passer. Abonnés: ${followedByCount}, Abonnements: ${followsCount}`
+		},
+		tooManyFollowerRation: "l'utilisateur a trop d'abonnés comparé aux abonnements ou vice versa, passer",
+		likeImageFailed: (value: string) => {
+			return `Mention "j'aime" sur les images de l'utilisateur ${value} échoué`;
+		},
+		followingFailed: (value: string) => {
+			return `Échec de l'abonnement à l'utilisateur ${value}`;
+		},
+		unfollowingCount: (count: number) => {
+			return `Désabonnements de ${count} users`
+		},
+		unfollowBreak: "10 désabonnements réalisés depuis la dernière pause. Pause"
 	},
 	en: {
 		settingInstagramLanguage: 'Setting language to english',
@@ -106,6 +126,20 @@ export const LanguageMessages: Language = {
 			return `Following up to ${value} followers of ${username}`;
 		},
 		followingReachedLimit: "Have reached followed limit for this user, stopping",
-		privateUser: "User is private, skipping"
+		privateUser: "User is private, skipping",
+		tooManyFollowerFollowing: (followedByCount: number, followsCount: number) => {
+			return `User has too many or too few followers or following, skipping. followedByCount: ${followedByCount}, followsCount: ${followsCount}`;
+		},
+		tooManyFollowerRation: "User has too many followers compared to follows or opposite, skipping",
+		likeImageFailed: (value: string) => {
+			return `Failed to like user images ${value}`;
+		},
+		followingFailed: (value: string) => {
+			return `Failed to process follower ${value}`;
+		},
+		unfollowingCount: (count: number) => {
+			return `Unfollowing ${count} users`
+		},
+		unfollowBreak: "Have unfollowed 10 users since last break. Taking a break"
 	}
 }

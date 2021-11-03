@@ -380,22 +380,23 @@ export class InstautoCtr {
                     (this.options.followUserMinFollowers != null && followedByCount < this.options.followUserMinFollowers) ||
                     (this.options.followUserMinFollowing != null && followsCount < this.options.followUserMinFollowing)
 				) {
-					this.logger.log('User has too many or too few followers or following, skipping.', 'followedByCount:', followedByCount, 'followsCount:', followsCount);
+					this.logger.log(this.languageManager.messages.tooManyFollowerFollowing);
 				} else if (
 					(this.options.followUserRatioMax != null && ratio > this.options.followUserRatioMax) ||
                     (this.options.followUserRatioMin != null && ratio < this.options.followUserRatioMin)
 				) {
-					this.logger.log('User has too many followers compared to follows or opposite, skipping');
+					this.logger.log(this.languageManager.messages.tooManyFollowerRation);
 				} else {
 					await this.followCurrentUser(follower);
 					numFollowedForThisUser += 1;
 
 					await Utils.sleep(10000);
-					if (!isPrivate && enableLikeImages && !this.hasReachedDailyLikesLimit()) {
+					const hasReachedDailyLikesLimit = await this.hasReachedDailyLikesLimit();
+					if (!isPrivate && enableLikeImages && !hasReachedDailyLikesLimit) {
 						try {
 							await this.likeCurrentUserImages({ username: follower, likeImagesMin, likeImagesMax });
 						} catch (err) {
-							this.logger.error(`Failed to follow user's images ${follower}`, err);
+							this.logger.error(this.languageManager.messages.likeImageFailed(username), err);
 							await this.takeScreenshot();
 						}
 					}
@@ -405,15 +406,14 @@ export class InstautoCtr {
 					await this.throttle();
 				}
 			} catch (err) {
-				this.logger.error(`Failed to process follower ${follower}`, err);
+				this.logger.error(this.languageManager.messages.followingFailed(username), err);
 				await Utils.sleep(20000);
-
 			}
 		}
 	}
 
 	public async safelyUnfollowUserList(usersToUnfollow: string[], limit: number): Promise<void> {
-		this.logger.log(`Unfollowing ${usersToUnfollow.length} users`);
+		this.logger.log(this.languageManager.messages.unfollowingCount(usersToUnfollow.length));
 
 		let i = 0; // Number of people processed
 		let j = 0; // Number of people actually unfollowed (button pressed)
@@ -438,7 +438,7 @@ export class InstautoCtr {
 						j += 1;
 
 						if (j % 10 === 0) {
-							this.logger.log('Have unfollowed 10 users since last break. Taking a break');
+							this.logger.log(this.languageManager.messages.unfollowBreak);
 							await Utils.sleep(10 * 60 * 1000, 0.1);
 
 						}
