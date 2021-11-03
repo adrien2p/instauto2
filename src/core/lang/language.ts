@@ -52,6 +52,7 @@ export interface Messages {
     likeImageCount: (count: number | string) => `Liking ... image(s)` | string;
     noImageToLike: 'No images to like' | string;
     likeImageDone: 'Done liking images' | string;
+    waiting: 'Waiting' | string;
 }
 
 export interface Language {
@@ -147,7 +148,8 @@ export const LanguageMessages: Language = {
 		},
 		unfollowingUserFailed: 'Failed to find unfollow button',
 		userNotFound: 'User not found',
-		usernameDetectionFailed: 'Failed to detect username'
+		usernameDetectionFailed: 'Failed to detect username',
+		waiting: 'Waiting'
 	},
 	fr: {
 		actionBlocked: 'Action bloquée',
@@ -236,6 +238,7 @@ export const LanguageMessages: Language = {
 		},
 		unfollowingUserFailed: "Échec de désabonnement à l\'utilisateur",
 		userNotFound: 'Utilisateur non trouvé',
-		usernameDetectionFailed: 'Échec de la detection du nom d\'utilisateur'
+		usernameDetectionFailed: 'Échec de la detection du nom d\'utilisateur',
+		waiting: 'Patienter'
 	}
 }

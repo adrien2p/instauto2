@@ -1,5 +1,6 @@
 import { ElementHandle, Page } from 'puppeteer-core';
 import { Logger } from './interfaces';
+import { languageManager } from "./lang/language-manager";
 
 export class Utils {
 	private static _logger: Logger = console;
@@ -33,7 +34,7 @@ export class Utils {
 
 	static sleep(ms: number, dev = 1): Promise<string> {
 		const msWithDev = ((Math.random() * dev) + 1) * ms;
-		this._logger.log('Waiting', Math.round(msWithDev / 1000), 'sec');
+		this._logger.log(languageManager.messages.waiting, Math.round(msWithDev / 1000), 'sec');
 		return new Promise(resolve => setTimeout(resolve, msWithDev));
 	}
 
