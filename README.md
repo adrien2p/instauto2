@@ -6,7 +6,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 <p align="center">
-  <img width="641" height="421" src="https://github.com/adrien2p/instauto2/tree/main/.github/logo/logo.png">
+  <img width="641" height="421" src=".github/logo/logo.png">
 </p>
 
 instauto2 is an Instagram automation/bot library written in modern, clean javascript using Google's Puppeteer-core. Goal is to be very easy to set up, use, and extend, and obey instagram's limits. Heavily inspired by [InstaPy](https://github.com/timgrossmann/InstaPy).
