@@ -13,8 +13,8 @@ Also, this library is a huge upgrade from [instauto](https://github.com/mifi/ins
 
 - First install [Node.js](https://nodejs.org/en/).
 
-- Create a new directory with a file like [example.js](https://github.com/adrien2p/instauto/blob/master/example.js)
- or [example-loki.js](https://github.com/adrien2p/instauto/blob/master/example-loki.js)
+- Create a new directory with a file like [example.js](https://github.com/adrien2p/instauto2/blob/main/example.js)
+ or [example-loki.js](https://github.com/adrien2p/instauto2/blob/main/example-loki.js)
 
 - Adjust your `example.js` to your needs. If you want to see how it would work without doing any invasive actions, use the `dryRun: true` option. Toggle `headless` to see it in action.
 
