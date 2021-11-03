@@ -1,5 +1,5 @@
-import { ElementHandle, Page } from "puppeteer";
-import { Logger } from "./interfaces";
+import { ElementHandle, Page } from 'puppeteer';
+import { Logger } from './interfaces';
 
 export class Utils {
 	private static _logger: Logger = console;

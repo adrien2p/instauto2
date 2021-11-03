@@ -1,5 +1,5 @@
-import { AbstractDbAdapter } from "./abstract-db.adapter";
-import { Follower, LikedPhoto, LiteLogger, UnFollower } from "../interfaces";
+import { AbstractDbAdapter } from './abstract-db.adapter';
+import { Follower, LikedPhoto, LiteLogger, UnFollower } from '../interfaces';
 
 interface TLikeLokiCollection<T = any> {
 	insert: (data: T) => T;
@@ -17,7 +17,7 @@ export class LokiDbAdapter<T extends TLoki> extends AbstractDbAdapter {
 	private readonly collectionNames = {
 		followed: 'followed',
 		unfollowed: 'unfollowed',
-		"liked-photos": 'liked-photos'
+		'liked-photos': 'liked-photos'
 	};
 
 	constructor(
@@ -29,7 +29,7 @@ export class LokiDbAdapter<T extends TLoki> extends AbstractDbAdapter {
 	}
 
 	addLikedPhoto({ username, href, time }: LikedPhoto): Promise<void> {
-		const collection = this.instance.getCollection(this.collectionNames["liked-photos"]);
+		const collection = this.instance.getCollection(this.collectionNames['liked-photos']);
 		return collection.insert({ username, href, time });
 	}
 
@@ -54,7 +54,7 @@ export class LokiDbAdapter<T extends TLoki> extends AbstractDbAdapter {
 
 	getLikedPhotosLastTimeUnit(timeUnit: number): Promise<LikedPhoto[]> {
 		const now = new Date().getTime();
-		const collection = this.instance.getCollection(this.collectionNames["liked-photos"]);
+		const collection = this.instance.getCollection(this.collectionNames['liked-photos']);
 		const constraint = now - timeUnit;
 		return Promise.resolve<LikedPhoto[]>(
 			collection.find({ time: { '$gte': constraint } })

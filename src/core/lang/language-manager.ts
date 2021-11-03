@@ -1,4 +1,4 @@
-import { LanguageMessages, Messages } from "./language";
+import { LanguageMessages, Messages } from './language';
 
 class LanguageManager {
 	private _languageMessages = LanguageMessages.en;

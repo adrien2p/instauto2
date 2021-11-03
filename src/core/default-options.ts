@@ -1,4 +1,4 @@
-import { BotOptions } from "./interfaces";
+import { BotOptions } from './interfaces';
 
 export const defaultBotOptions:Partial<BotOptions> = {
 	instagramBaseUrl: 'https://www.instagram.com',
