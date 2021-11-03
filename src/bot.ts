@@ -37,7 +37,7 @@ export class InstautoCtr {
 	constructor(private readonly db: AbstractDbAdapter, private readonly browser: Browser, private options: BotOptions) {
 	}
 
-	get sleep(): (ms: number, dev) => Promise<string> {
+	get sleep(): (ms: number, dev?: number) => Promise<string> {
 		return Utils.sleep
 	}
 
