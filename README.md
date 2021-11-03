@@ -82,6 +82,34 @@ export class MyAdapter extends AbstractDbAdapter {
 
 To see how to use you own adapter you can have a look to the [example-loki.js](https://github.com/mifi/instauto/blob/master/example-loki.js)
 
+## Language
+
+The library support multiple language for logging purpose.
+The default language is `english` but you can switch to `french` or provide your own language.
+
+to change to language using the provided translation see the following example
+
+```typescript
+languageManager.useExistingCustomLanguage('fr');
+
+// or
+
+languageManager.useExistingCustomLanguage('en');
+```
+
+to be able to provide your own translations use the following example
+
+```typescript
+languageManager.setCustomLanguage({
+    // The translations goes here
+});
+```
+Finally, to reset the language to the original one (en), use the following example
+
+```typescript
+languageManager.resetLanguage();
+```
+
 ## Tips
 
 - Run this on a machine with a non-cloud IP to avoid being banned
