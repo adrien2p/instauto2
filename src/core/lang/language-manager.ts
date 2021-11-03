@@ -8,7 +8,7 @@ class LanguageManager {
 	}
 
 	useExistingCustomLanguage(key: 'fr' | 'en'): void {
-		this._languageMessages = LanguageManager[key];
+		this._languageMessages = LanguageMessages[key];
 	}
 
 	setCustomLanguage(LanguageMessages: Messages): void {
